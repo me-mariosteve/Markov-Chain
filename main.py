@@ -43,7 +43,7 @@ def main(argc, argv):
                 else:
                     text, length = argv[2], int(argv[3])
                     probs = markov.calc_probs(text)
-                    out = markov.gen(probs, length)
+                    out = markov.generate(probs, length)
                     print(out)
                     return 0
 
