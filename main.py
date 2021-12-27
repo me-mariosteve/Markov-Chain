@@ -36,17 +36,17 @@ def main(argc, argv):
                 return 1
         
         elif option == "gen":
-                if argc != 4:
-                    print("Usage of the option 'gen': main.py gen TEXT LENGTH")
-                    return 1
-                
-                else:
+                if argc == 4:
                     text, length = argv[2], int(argv[3])
                     probs = markov.calc_probs(text)
                     out = markov.generate(probs, length)
                     print(out)
                     return 0
-
+                
+                else:
+                    print("Usage of the option 'gen': main.py gen TEXT LENGTH")
+                    return 1
+                
 
 if __name__ == "__main__":
     main(len(sys.argv), sys.argv)
