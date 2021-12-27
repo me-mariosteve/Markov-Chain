@@ -31,7 +31,7 @@ def next_char(_probs: dict[tuple[str], int], last: str):
     
     # Gets the probabilities for the patterns starting with the character `last`.
     probs = {
-        key, val
+        (key, val)
         for key, val in probs.items()
         if key[0] == last
     }
