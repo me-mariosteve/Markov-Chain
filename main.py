@@ -49,4 +49,4 @@ def main(argc, argv):
 
 
 if __name__ == "__main__":
-    main(sys.argc, sys.argv)
+    main(len(sys.argv), sys.argv)
