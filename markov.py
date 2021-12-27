@@ -31,19 +31,19 @@ def next_char(_probs: dict[tuple[str], int], last: str):
     
     # Gets the probabilities for the patterns starting with the character `last`.
     probs = {
-        (key, val)
-        for key, val in probs.items()
+        key: val
+        for key, val in _probs.items()
         if key[0] == last
     }
     
     total = dict_sum(probs)
-    rnd = random.randint(0, s)
+    rnd = random.randint(0, total)
     
     counter = 0
     for key, val in probs.items():
         counter += val
         if counter >= rnd:
-            return key
+            return key[1]
 
 
 def generate(probs: dict[tuple[str], int], length: int):

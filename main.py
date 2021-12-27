@@ -3,13 +3,14 @@ import sys
 import markov
 
 
-def main(argc, argv):
+
+def main(argc: int, argv: tuple[str]):
     
     if argc == 1:
         print("Usage: main.py OPTION [OPTIONS ...]")
         return 0
     
-    elif argc == 2:
+    elif argc > 1:
         option = argv[1]
         
         # Displays how to use this program.
@@ -17,9 +18,9 @@ def main(argc, argv):
             print(
                 "Usage: main.py OPTION [OPTIONS ...]\n"
                 "Options:\n"
-                "  help        Displays the help about this program.\n"
+                "  help             Displays the help about this program.\n"
                 "  calc TEXT        Calculate the porbability for each pattern of two characters to appear in the text TEXT.\n"
-                "  gen TEXT LENGTH        Generate a random text of length LENGTH by using the probability of each pair of character in the text TEXT."
+                "  gen TEXT LENGTH  Generate a random text of length LENGTH by using the probability of each pair of character in the text TEXT."
             )
             return 0
 
