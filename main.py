@@ -4,9 +4,35 @@ import markov
 
 
 def main(argc, argv):
+    
     if argc == 1:
-        print("Usage: main.py OPTION [OPTIONS ...}")
+        print("Usage: main.py OPTION [OPTIONS ...]")
         return 0
+    
+    elif argc == 2:
+        option = argv[1]
+        
+        # Displays how to use this program.
+        if option == "help":
+            print(
+                "Usage: main.py OPTION [OPTIONS ...]\n"
+                "Options:\n"
+                "  help        Displays the help about this program.\n"
+                "  calc TEXT   Calculate the porbability for each pattern of two characters to appear in the text TEXT.\n"
+            )
+            return 0
+
+        # Calculates the probability for each pattern to appear.
+        elif option == "calc":
+            if argc == 3:
+                text = argv[2]
+                probs = markov.calc_probs(text)
+                print(probs)
+                return 0
+                
+            else:
+                print("Usage of the option 'calc': main.py calc TEXT")
+                return 1
 
 
 if __name__ == "__main__":
