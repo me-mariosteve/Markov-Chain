@@ -24,9 +24,34 @@ def calc_probs(s: str):
     return out
     
 
-def next_char(_probs: dict[tuple[str], int], last: str):
+def calc_file_probs(filename: str, encoding: str = 'utf-8'):
     """
-    Calculate a random character with the last character and the given probabilities for each character to appear.
+    Finds the probability of each pair to appear in the file `filename`.
+    """
+
+    probs = {}
+
+    with open(filename, 'r', encoding=encoding) as file:
+
+        last = None
+        while True:
+            c = file.read(1)
+
+            if c == '': # EOF
+                return probs
+
+            elif (last, c) in probs and last:
+                probs[last, c] += 1
+
+            else:
+                probs[last, c] = 1
+            
+            last = c
+
+
+def next_char(_probs: dict[tuple[str], int], last: str) -> str:
+    """
+    Calculate a random character with the last character and the given probability for each character to appear.
     """
     
     # Gets the probabilities for the patterns starting with the character `last`.
@@ -44,17 +69,25 @@ def next_char(_probs: dict[tuple[str], int], last: str):
         counter += val
         if counter >= rnd:
             return key[1]
+    return ""
 
 
-def generate(probs: dict[tuple[str], int], length: int):
+def generate(probs: dict[tuple[str], int], length: int) -> str:
     """
     Generate a random string of length `length` by using the probabilities `probs` of each pattern to appear.
     """
     
+    if probs == {}:
+        return ""
+
     # To get the first character of the string, which is the first of a random pattern.
-    out = random.choice(list(probs.keys()))[0]
+    out: str = random.choice(list(probs.keys()))[0]
     
     for i in range(length):
-        out += next_char(probs, out[-1])
+        n = next_char(probs, out[-1])
+        if n:
+            out += n
+        else:
+            return out
     
     return out
