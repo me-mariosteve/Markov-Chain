@@ -1,5 +1,6 @@
 # Markov-Chain
 
-An attempt to generate random sentences, inspired by the Markov chain.
+An attempt to generate predictable random sentences, inspired by the Markov chain.
 
-To run the code, download the files `markov.py` and `main.py` then run `python main.py` in the terminal with the options you want.
+I tried and succeeded to solve this task about one year ago in python, now I try with Haskell.
+
